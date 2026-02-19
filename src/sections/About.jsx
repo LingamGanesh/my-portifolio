@@ -247,9 +247,9 @@ const VALUES = [
 ];
 
 const STATS = [
-  { val: "Fresher",  label: "Years experience" },
+  { val: "Fresher",  },
   { val: "4+", label: "Projects Completed"  },
-  { val: "10+",  label: "Tech stacks"       },
+  { val: "15+",  label: "Tech stacks"       },
   { val: "∞",   label: "Cups of chai"      },
 ];
 

@@ -250,7 +250,7 @@ export default function Hero() {
                     inset: -22, opacity: 0.38, filter: "blur(20px)",
                     background: "conic-gradient(from 0deg,#ff2d78,#b94eff,#00ff88,#ff6a00,#ff2d78)",
                   }} />
-                  <div className="spin-ring absolute rounded-full" style={{
+                  <div className=" absolute rounded-full" style={{
                     inset: -5, filter: "blur(2.5px) brightness(1.3)",
                     background: "conic-gradient(from 0deg,#ff2d78,#ff1744,#ff6a00,#ffcc00,#b94eff,#00ff88,#00bfff,#ff2d78)",
                   }} />
