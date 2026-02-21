@@ -170,7 +170,10 @@ export default function Hero() {
               </span>
             </div>
 
-            
+            {/*
+              NAME HEADING
+          
+            */}
             <h1
               className="hau1 hero-f-display hero-name-mobile font-extrabold leading-[1.0] tracking-tight w-full"
               style={{ fontSize: "clamp(3.4rem, 8vw, 6.5rem)" }}
@@ -195,7 +198,7 @@ export default function Hero() {
 
             {/*
               ROTATING ROLE
-
+              
             */}
             <div
               className="hau2 hero-role-wrap-mobile overflow-hidden flex items-center justify-center md:justify-start"
@@ -220,7 +223,7 @@ export default function Hero() {
 
             {/*
               RESUME BUTTON
-              hero-btn-mobile makes it full-width with tighter padding on phones
+              
             */}
             <div className="hau4 w-full sm:w-auto">
               <a
@@ -240,7 +243,7 @@ export default function Hero() {
 
             {/*
               SCROLL INDICATOR
-              
+            
             */}
             <div className="hau5 hero-scroll-mobile mt-3">
               <div className="flex flex-col items-center gap-2">
@@ -251,15 +254,19 @@ export default function Hero() {
             </div>
           </div>
 
-       
+         
+          <div className="hau0 flex items-center gap-3 justify-center md:hidden">
+            <div className="w-8 h-[2px] rounded-full bg-gradient-to-r from-blue-500 to-violet-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+            <span className="hero-eyebrow-mobile hero-f-body text-[0.62rem] font-semibold tracking-[0.38em] uppercase text-slate-500 dark:text-slate-400">
+              Welcome · Portfolio 2026
+            </span>
+          </div>
 
-          {/* ══ RIGHT: Profile image — UNCHANGED for md/lg ══ */}
           <div className="hau6 flex flex-col items-center gap-5 order-1 md:order-2">
 
             {/*
               IMAGE CONTAINER
               
-
             */}
             <div
               className="hero-img-mobile relative flex-shrink-0 w-[170px] h-[170px] md:w-[200px] md:h-[200px] lg:w-[270px] lg:h-[270px]"
@@ -289,7 +296,8 @@ export default function Hero() {
 
             {/*
               SOCIAL ICONS
-        
+              hero-social-mobile shrinks icon circles to 36px on phones.
+              Always visible (all screen sizes) — UNCHANGED behaviour.
             */}
             <div className="hero-social-mobile flex items-center gap-2.5 flex-wrap justify-center">
               {SOCIALS.map(({ label, href, hover, svg }) => (

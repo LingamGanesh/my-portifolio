@@ -18,13 +18,22 @@ const Svg = {
   SQL: () => <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><ellipse cx="16" cy="9" rx="10" ry="4" fill="#00758F"/><path d="M6 9v5c0 2.2 4.5 4 10 4s10-1.8 10-4V9" fill="#00758F"/><path d="M6 14v5c0 2.2 4.5 4 10 4s10-1.8 10-4v-5" fill="#F29111"/></svg>,
   VSCode: () => <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><path d="M23.5 3.5L13 13.7 8.5 9.5 3 12v8l5.5 2.5L13 18.3l10.5 10.2L29 25V7z" fill="#007ACC"/></svg>,
   JWT: () => <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="4" fill="#111"/><rect x="14.5" y="6" width="3" height="20" fill="#00b9f1"/><rect x="6" y="14.5" width="20" height="3" fill="#d63aff"/><circle cx="10.5" cy="10.5" r="2" fill="#fb015b"/><circle cx="21.5" cy="21.5" r="2" fill="#fb015b"/></svg>,
+  Python: () => (
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="none">
+    <rect width="32" height="32" rx="4" fill="#111" /><path
+      d="M16 4c-5 0-4.7 2.2-4.7 2.2v2.3h4.8v.7H9.2S4 9 4 16c0 7 4.6 6.8 4.6 6.8h2.7v-3.8s-.1-4.6 4.5-4.6h7.7s4.3.1 4.3-4.3V8.3S28 4 22.9 4H16zm-2.7 2.3a1.3 1.3 0 110 2.6 1.3 1.3 0 010-2.6z"
+      fill="#3776AB" /><path
+      d="M16 28c5 0 4.7-2.2 4.7-2.2v-2.3h-4.8v-.7h6.9S28 23 28 16c0-7-4.6-6.8-4.6-6.8h-2.7v3.8s.1 4.6-4.5 4.6H8.5S4.2 17.5 4.2 22v1.7S4 28 9.1 28H16zm2.7-2.3a1.3 1.3 0 110-2.6 1.3 1.3 0 010 2.6z"
+      fill="#FFD43B"/>
+  </svg>
+),
 };
 
 const TABS = [
+    { id:"languages", label:"Languages", emoji:"🧠", accent:"#f59e0b", rgb:"245,158,11",
+    skills:[{n:"HTML5",S:Svg.HTML},{n:"CSS3",S:Svg.CSS},{n:"JavaScript",S:Svg.JS},{n:"SQL",S:Svg.SQL},{ n: "Python", S: Svg.Python }] },
   { id:"frontend",  label:"Frontend",  emoji:"🎨", accent:"#3b82f6", rgb:"59,130,246",
     skills:[{n:"React.js",S:Svg.React},{n:"Tailwind",S:Svg.Tailwind},{n:"Bootstrap",S:Svg.Bootstrap},{n:"REST APIs",S:Svg.REST},{n:"JWT Auth",S:Svg.JWT}] },
-  { id:"languages", label:"Languages", emoji:"🧠", accent:"#f59e0b", rgb:"245,158,11",
-    skills:[{n:"HTML5",S:Svg.HTML},{n:"CSS3",S:Svg.CSS},{n:"JavaScript",S:Svg.JS},{n:"SQL",S:Svg.SQL}] },
   { id:"backend",   label:"Backend",   emoji:"⚙️", accent:"#10b981", rgb:"16,185,129",
     skills:[{n:"Node.js",S:Svg.Node},{n:"Express.js",S:Svg.Express}] },
   { id:"databases", label:"Databases", emoji:"🗄️", accent:"#8b5cf6", rgb:"139,92,246",
