@@ -1,29 +1,8 @@
-/*
-  index.css
 
-  IF YOU ARE USING Tailwind v4 (@tailwindcss/vite plugin):
-    Use: @import "tailwindcss";
-    darkMode 'class' is configured here with @variant (see below)
-    Do NOT create tailwind.config.js — it will conflict.
-
-  IF YOU ARE USING Tailwind v3 (tailwindcss npm package):
-    Use the three @tailwind directives (commented out below)
-    darkMode: 'class' goes in tailwind.config.js
-*/
-
-/* ── TAILWIND v4 syntax (for @tailwindcss/vite) ── */
 @import "tailwindcss";
 
-/* Tell Tailwind v4 to use class-based dark mode */
 @variant dark (&:where(.dark, .dark *));
 
-/* ── Tailwind v3 syntax (uncomment if using v3) ──
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-*/
-
-/* Global resets */
 *,
 *::before,
 *::after {
@@ -39,4 +18,32 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  
+}
+
+::-webkit-scrollbar {
+  width: 4px;             
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 100, 100, 0.7);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100,100,100,0.5) transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+  border-radius: 10px;
 }

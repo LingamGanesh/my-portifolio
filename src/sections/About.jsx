@@ -41,10 +41,7 @@ export default function About() {
   const [valRef, valVis]   = useReveal();
 
   return (
-    /*
-      ✅ NO inline style background.
-      bg-slate-50 / dark:bg-[#080d20] swaps on theme toggle via <html class="dark">
-    */
+    
     <section
       id="about"
       className="bg-slate-50 dark:bg-[#080d20] text-slate-900 dark:text-white transition-colors duration-500"

@@ -64,6 +64,64 @@ const CSS = `
   .dark .hero-scroll-track { background:rgba(255,255,255,0.1); }
   .hero-scroll-track::before { content:''; position:absolute; top:-100%; left:0; width:100%; height:55%; background:linear-gradient(180deg,transparent 0%,rgba(59,130,246,0) 8%,rgba(59,130,246,0.9) 45%,rgba(59,130,246,0) 100%); border-radius:99px; animation:hero-beam 2.4s ease-in-out infinite; }
   @keyframes hero-beam { 0%{top:-100%;opacity:0;} 10%{opacity:1;} 85%{opacity:1;} 100%{top:110%;opacity:0;} }
+
+  /* ── SMALL DEVICE ONLY styles (<640px) ──────────────────────────────────
+     These only apply below the sm breakpoint (max-width: 639px).
+     Nothing here affects md or lg layouts at all.
+  ────────────────────────────────────────────────────────────────────────── */
+  @media (max-width: 639px) {
+
+    /* Name: scale down from the large clamp minimum so it fits on 375px phones */
+    .hero-name-mobile { font-size: clamp(2.1rem, 11vw, 3.2rem) !important; }
+
+    /* Role text: tighter on phone */
+    .hero-role-mobile { font-size: clamp(0.9rem, 4.5vw, 1.2rem) !important; }
+
+    /* Resume button: full width, smaller padding */
+    .hero-btn-mobile {
+      width: 100%;
+      padding: 0.85rem 1.5rem !important;
+      font-size: 0.68rem !important;
+      justify-content: center;
+    }
+
+    /* Description: slightly smaller line height on tiny screens */
+    .hero-desc-mobile {
+      font-size: 0.82rem !important;
+      line-height: 1.65 !important;
+      max-width: 100% !important;
+    }
+
+    /* Profile image: a bit smaller so it doesn't eat all vertical space */
+    .hero-img-mobile {
+      width: 130px !important;
+      height: 130px !important;
+    }
+
+    /* Social icons: smaller circles on phone */
+    .hero-social-mobile a {
+      width: 36px !important;
+      height: 36px !important;
+    }
+
+    /* Scroll indicator: hidden on phones — saves space */
+    .hero-scroll-mobile { display: none !important; }
+
+    /* Gap between stacked columns: tighter on phones */
+    .hero-grid-mobile { gap: 1.5rem !important; }
+
+    /* Left column gap: tighter */
+    .hero-left-mobile { gap: 1rem !important; }
+
+    /* Role height: shorter container on mobile */
+    .hero-role-wrap-mobile { height: 36px !important; }
+
+    /* Eyebrow: smaller text & gap on phone */
+    .hero-eyebrow-mobile {
+      font-size: 0.52rem !important;
+      letter-spacing: 0.3em !important;
+    }
+  }
 `;
 
 export default function Hero() {
@@ -79,89 +137,98 @@ export default function Hero() {
   }, []);
 
   return (
-    /*
-      ✅ NO inline style background here.
-      bg-white / dark:bg-[#06091a] handles the theme switch via Tailwind.
-      This will change when <html class="dark"> is toggled.
-    */
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden
-        bg-white dark:bg-[#06091a] transition-colors duration-500 "
+        bg-white dark:bg-[#06091a] transition-colors duration-500"
     >
       <style>{CSS}</style>
 
-      {/* Ambient blobs */}
+      {/* Ambient blobs — UNCHANGED */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-52 -left-52 w-[680px] h-[680px] rounded-full bg-blue-500 opacity-[0.025] dark:opacity-[0.07] blur-[130px]" />
         <div className="absolute top-1/2 -right-52 w-[520px] h-[520px] rounded-full bg-violet-500 opacity-[0.02] dark:opacity-[0.055] blur-[110px]" />
       </div>
 
-      {/*
-        ── INCREASED TOP PADDING: pt-40 sm:pt-44 lg:pt-48 ──
-        This gives more breathing room below the navbar
-      */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 pt-20 sm:pt-24 lg:pt-28 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-14 lg:gap-24 items-center">
+      {/* Outer padding — UNCHANGED for md/lg, tighter pt on xs only */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-16 xl:px-24 pt-20 sm:pt-24 lg:pt-28 pb-14 sm:pb-20">
 
-          {/* ══ LEFT: Text content ══ */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6 order-2 md:order-1">
+        {/*
+          Grid — UNCHANGED for md+.
+          hero-grid-mobile tightens the gap on xs via @media query above.
+        */}
+        <div className="hero-grid-mobile grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-14 lg:gap-24 items-center">
 
-           {/* Eyebrow */}
-<div className="hau0 hidden md:flex items-center gap-3 justify-center md:justify-start">
-  <div className="w-8 h-[2px] rounded-full bg-gradient-to-r from-blue-500 to-violet-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
-  <span className="hero-f-body text-[0.62rem] font-semibold tracking-[0.38em] uppercase text-slate-500 dark:text-slate-400">
-    Welcome · Portfolio 2026
-  </span>
-</div>
+          {/* ══ LEFT: Text content — UNCHANGED for md+ ══ */}
+          <div className="hero-left-mobile flex flex-col items-center md:items-start text-center md:text-left gap-6 order-2 md:order-1">
 
-            {/*
-              ── LARGE NAME: clamp(3.4rem, 8vw, 6.5rem) ──
-              Split into two lines for more impact
-            */}
-            <h1 className="hau1 hero-f-display font-extrabold leading-[1.0] tracking-tight w-full"
-              style={{ fontSize: "clamp(3.4rem, 8vw, 6.5rem)" }}>
-              <span className="block hero-f-body font-light text-slate-400 dark:text-white/30"
-                style={{ fontSize: "clamp(0.9rem,2.2vw,1.25rem)", letterSpacing: "0.12em", marginBottom: "0.6rem" }}>
+            {/* Eyebrow — desktop only (hidden on mobile, shown md+) — UNCHANGED */}
+            <div className="hau0 hidden md:flex items-center gap-3 justify-center md:justify-start">
+              <div className="w-8 h-[2px] rounded-full bg-gradient-to-r from-blue-500 to-violet-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+              <span className="hero-f-body text-[0.62rem] font-semibold tracking-[0.38em] uppercase text-slate-500 dark:text-slate-400">
+                Welcome · Portfolio 2026
+              </span>
+            </div>
+
+            
+            <h1
+              className="hau1 hero-f-display hero-name-mobile font-extrabold leading-[1.0] tracking-tight w-full"
+              style={{ fontSize: "clamp(3.4rem, 8vw, 6.5rem)" }}
+            >
+              <span
+                className="block hero-f-body font-light text-slate-400 dark:text-white/30"
+                style={{ fontSize: "clamp(0.9rem,2.2vw,1.25rem)", letterSpacing: "0.12em", marginBottom: "0.6rem" }}
+              >
                 Hello, I'm
               </span>
               <span style={{
                 background: "linear-gradient(115deg, #2563eb 0%, #5b21b6 50%, #9333ea 100%)",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 display: "block", lineHeight: 1.02,
-              }}>
-                Lingam
-              </span>
+              }}>Lingam</span>
               <span style={{
                 background: "linear-gradient(115deg, #3b82f6 0%, #7c3aed 55%, #a855f7 100%)",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 display: "block", lineHeight: 1.02,
-              }}>
-                Ganesh
-              </span>
+              }}>Ganesh</span>
             </h1>
 
-            {/* Rotating role */}
-            <div className="hau2 overflow-hidden flex items-center justify-center md:justify-start" style={{ height: 48 }}>
-              <p className={`hero-f-serif hero-cursor ${roleClass} text-slate-600 dark:text-slate-300`}
-                style={{ fontSize: "clamp(1.2rem, 2.8vw, 1.75rem)", fontWeight: 400, fontStyle: "italic" }}>
+            {/*
+              ROTATING ROLE
+
+            */}
+            <div
+              className="hau2 hero-role-wrap-mobile overflow-hidden flex items-center justify-center md:justify-start"
+              style={{ height: 48 }}
+            >
+              <p
+                className={`hero-f-serif hero-cursor hero-role-mobile ${roleClass} text-slate-600 dark:text-slate-300`}
+                style={{ fontSize: "clamp(1.2rem, 2.8vw, 1.75rem)", fontWeight: 400, fontStyle: "italic" }}
+              >
                 {ROLES[roleIdx]}
               </p>
             </div>
 
-            {/* Description */}
-            <p className="hau3 hero-f-body max-w-lg text-[0.92rem] sm:text-[0.98rem] leading-relaxed font-normal text-slate-500 dark:text-slate-400">
+            {/* Description — hero-desc-mobile tightens font + line-height on phones */}
+            <p className="hau3 hero-f-body hero-desc-mobile max-w-lg text-[0.92rem] sm:text-[0.98rem] leading-relaxed font-normal text-slate-500 dark:text-slate-400">
               Building interactive, responsive web applications with clean code and modern tooling.
               Passionate about great user experiences from frontend to backend.
             </p>
 
+            {/* Divider — desktop only, UNCHANGED */}
             <div className="hau3 hidden md:block w-16 h-px bg-gradient-to-r from-blue-400/50 to-transparent" />
 
-            {/* Resume CTA */}
-            <div className="hau4">
-              <a href="/resume.pdf" download="Lingam_Ganesh_Resume.pdf"
-                className="hero-btn-resume hero-f-body inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-xl border-2 border-blue-500/65 dark:border-blue-500/50 text-blue-600 dark:text-blue-400 text-[0.74rem] font-semibold tracking-[0.16em] uppercase no-underline cursor-pointer"
-                style={{ boxShadow: "0 0 14px rgba(59,130,246,0.1)" }}>
+            {/*
+              RESUME BUTTON
+              hero-btn-mobile makes it full-width with tighter padding on phones
+            */}
+            <div className="hau4 w-full sm:w-auto">
+              <a
+                href="/resume.pdf"
+                download="Lingam_Ganesh_Resume.pdf"
+                className="hero-btn-resume hero-btn-mobile hero-f-body inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-xl border-2 border-blue-500/65 dark:border-blue-500/50 text-blue-600 dark:text-blue-400 text-[0.74rem] font-semibold tracking-[0.16em] uppercase no-underline cursor-pointer"
+                style={{ boxShadow: "0 0 14px rgba(59,130,246,0.1)" }}
+              >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                   <polyline points="7 10 12 15 17 10"/>
@@ -171,8 +238,11 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Scroll indicator */}
-            <div className="hau5 mt-3">
+            {/*
+              SCROLL INDICATOR
+              
+            */}
+            <div className="hau5 hero-scroll-mobile mt-3">
               <div className="flex flex-col items-center gap-2">
                 <span className="hero-f-body text-[0.42rem] font-semibold tracking-[0.4em] uppercase text-slate-400 dark:text-slate-500">scroll</span>
                 <div className="hero-scroll-track" />
@@ -181,31 +251,33 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Eyebrow */}
-<div className="hau0 flex items-center gap-3 justify-center md:justify-start sm:flex md:hidden">
-  <div className="w-8 h-[2px] rounded-full bg-gradient-to-r from-blue-500 to-violet-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
-  <span className="hero-f-body text-[0.62rem] font-semibold tracking-[0.38em] uppercase text-slate-500 dark:text-slate-400">
-    Welcome · Portfolio 2026
-  </span>
-</div>
+       
 
-          {/* ══ RIGHT: Profile image ══ */}
+          {/* ══ RIGHT: Profile image — UNCHANGED for md/lg ══ */}
           <div className="hau6 flex flex-col items-center gap-5 order-1 md:order-2">
-            <div className="relative flex-shrink-0 w-[170px] h-[170px] md:w-[200px] md:h-[200px] lg:w-[270px] lg:h-[270px]">
-              {/* Ambient glow */}
+
+            {/*
+              IMAGE CONTAINER
+              
+
+            */}
+            <div
+              className="hero-img-mobile relative flex-shrink-0 w-[170px] h-[170px] md:w-[200px] md:h-[200px] lg:w-[270px] lg:h-[270px]"
+            >
+              {/* Ambient glow — UNCHANGED */}
               <div className="hero-ring-glow absolute rounded-full"
                 style={{ inset: "-20px", opacity: 0.28, filter: "blur(20px)", background: "conic-gradient(from 0deg,#3b82f6,#7c3aed,#a855f7,#3b82f6)" }} />
-              {/* Hard ring */}
+              {/* Hard ring — UNCHANGED */}
               <div className="hero-ring-spin absolute rounded-full"
                 style={{ inset: "-3px", padding: "3px", background: "conic-gradient(from 0deg,#3b82f6,#4f46e5,#7c3aed,#a855f7,#3b82f6)", borderRadius: "50%", filter: "blur(0.5px) brightness(1.1)" }} />
-              {/* Image */}
+              {/* Image — UNCHANGED */}
               <div className="relative z-10 w-full h-full rounded-full overflow-hidden"
                 style={{ border: "4px solid #06091a", boxShadow: "0 0 0 1px rgba(59,130,246,0.12),0 16px 48px rgba(0,0,0,0.5)" }}>
                 <img src={profilePic} alt="Lingam Ganesh" className="w-full h-full object-cover" />
               </div>
             </div>
 
-            {/* Name tag */}
+            {/* Name tag — UNCHANGED */}
             <div className="text-center">
               <p className="hero-f-display text-[0.58rem] font-bold tracking-[0.28em] uppercase text-slate-400/60 dark:text-white/20">Lingam Ganesh</p>
               <div className="flex items-center justify-center gap-2 mt-1">
@@ -215,27 +287,31 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Socials — hidden on md */}
-            {/* Socials — hide on phones */}
-<div className="flex sm:flex lg:flex items-center gap-2.5 flex-wrap justify-center">
-  {SOCIALS.map(({ label, href, hover, svg }) => (
-    <a
-      key={label}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className={`flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 text-slate-400 dark:text-white/30 transition-all duration-300 ${hover}`}
-    >
-      {svg}
-    </a>
-  ))}
-</div>
+            {/*
+              SOCIAL ICONS
+        
+            */}
+            <div className="hero-social-mobile flex items-center gap-2.5 flex-wrap justify-center">
+              {SOCIALS.map(({ label, href, hover, svg }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className={`flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 text-slate-400 dark:text-white/30 transition-all duration-300 ${hover}`}
+                >
+                  {svg}
+                </a>
+              ))}
+            </div>
+
           </div>
 
         </div>
       </div>
 
+      {/* Bottom divider — UNCHANGED */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-white/[0.07] to-transparent" />
     </section>
   );

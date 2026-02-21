@@ -105,9 +105,7 @@ export default function Skills() {
     : 5;
 
   return (
-    /*
-      ✅ bg-white / dark:bg-[#06091a] — NO inline style background
-    */
+    
     <section
       id="skills"
       className="bg-white dark:bg-[#06091a] text-slate-900 dark:text-white transition-colors duration-500"

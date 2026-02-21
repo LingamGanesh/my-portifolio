@@ -1,11 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-/*
-  File: src/components/Themecontext.jsx
-  NOTE: filename uses lowercase 'c' — all imports must match exactly:
-    import { ThemeProvider } from "./components/Themecontext.jsx"
-    import { useTheme }      from "./Themecontext"
-*/
+
 
 const ThemeContext = createContext(null);
 

@@ -1,13 +1,10 @@
 /*
   File: src/components/Navbar.jsx
-
-  FIX: import useTheme from "./Themecontext" (lowercase c)
-  matches the actual filename Themecontext.jsx
 */
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Sun, Moon, LayoutGrid, X } from "lucide-react";
-import { useTheme } from "./Themecontext";   // ✅ lowercase 'c' matches filename
+import { useTheme } from "./Themecontext";
 
 const NAV_LINKS = [
   { label: "Home",     href: "#home"     },
@@ -47,7 +44,7 @@ function NavLink({ href, label, active, onClick }) {
 function MobileDropdown({ open, onClose }) {
   return (
     <div className={`
-      absolute top-full right-0 mt-3 w-52 rounded-2xl overflow-hidden
+      absolute top-full right-0 mt-3 w-48 rounded-2xl overflow-hidden
       border border-slate-200/80 dark:border-white/10
       bg-white/90 dark:bg-[#060d1f]/92
       backdrop-blur-2xl
@@ -67,7 +64,7 @@ function MobileDropdown({ open, onClose }) {
             onClick={onClose}
             style={{ transitionDelay: open ? `${i * 45}ms` : "0ms" }}
             className={`
-              group flex items-center gap-3 px-4 py-3.5 rounded-xl
+              group flex items-center gap-3 px-4 py-3 rounded-xl
               text-[0.7rem] font-semibold tracking-[0.2em] uppercase no-underline
               text-slate-600 dark:text-slate-400
               hover:text-slate-900 dark:hover:text-white
@@ -132,8 +129,10 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, [mobileOpen, handleOutsideClick]);
 
+  /* icon button — slightly smaller on mobile */
   const iconBtn = `
-    relative w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0
+    relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden
+    flex items-center justify-center flex-shrink-0
     border border-slate-200 dark:border-white/10
     bg-slate-100/80 dark:bg-white/5
     hover:bg-slate-200 dark:hover:bg-white/10
@@ -162,15 +161,25 @@ export default function Navbar() {
         ${scrolled ? "opacity-100" : "opacity-0"}
       `}/>
 
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 lg:px-12 h-16 lg:h-[72px]">
+     
+      <nav className="
+        max-w-7xl mx-auto flex items-center justify-between
+        px-3.5 sm:px-8 lg:px-12
+        h-[52px] sm:h-16 lg:h-[72px]
+      ">
 
-        {/* Logo */}
-        <a href="#home" className="relative group flex items-center gap-1.5 no-underline">
-          <span className="font-mono text-blue-500 dark:text-blue-400 text-xl font-bold leading-none group-hover:text-blue-400 dark:group-hover:text-blue-300 transition-colors duration-300">
-            {"<"}
-          </span>
+        {/* Logo — slightly smaller text on phones */}
+        <a href="#home" className="relative group flex items-center gap-1 sm:gap-1.5 no-underline">
           <span className="
-            font-black text-[0.85rem] lg:text-[0.92rem] tracking-[0.2em] uppercase
+            font-mono text-blue-500 dark:text-blue-400 font-bold leading-none
+            text-[1.1rem] sm:text-xl
+            group-hover:text-blue-400 dark:group-hover:text-blue-300
+            transition-colors duration-300
+          ">{"<"}</span>
+
+          <span className="
+            font-black tracking-[0.2em] uppercase
+            text-[0.75rem] sm:text-[0.85rem] lg:text-[0.92rem]
             bg-gradient-to-r from-slate-800 via-slate-700 to-slate-500
             dark:from-white dark:via-slate-200 dark:to-slate-400
             bg-clip-text text-transparent
@@ -178,9 +187,14 @@ export default function Navbar() {
             dark:group-hover:from-blue-200 dark:group-hover:via-white dark:group-hover:to-slate-200
             transition-all duration-500
           ">Ganesh</span>
-          <span className="font-mono text-violet-500 dark:text-violet-400 text-xl font-bold leading-none group-hover:text-violet-400 dark:group-hover:text-violet-300 transition-colors duration-300">
-            {"/>"}
-          </span>
+
+          <span className="
+            font-mono text-violet-500 dark:text-violet-400 font-bold leading-none
+            text-[1.1rem] sm:text-xl
+            group-hover:text-violet-400 dark:group-hover:text-violet-300
+            transition-colors duration-300
+          ">{"/>"}</span>
+
           <span className="
             absolute -bottom-1 left-0 right-0 h-px
             bg-gradient-to-r from-blue-400/0 via-blue-400/40 to-violet-400/0
@@ -189,7 +203,7 @@ export default function Navbar() {
           "/>
         </a>
 
-        {/* Desktop links — hidden on md and below */}
+        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-7 lg:gap-10">
           {NAV_LINKS.map((link) => (
             <NavLink
@@ -202,10 +216,10 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right controls */}
-        <div className="flex items-center gap-2.5">
+        {/* Right controls — tighter gap on mobile */}
+        <div className="flex items-center gap-2 sm:gap-2.5">
 
-          {/* Theme toggle button */}
+          {/* Theme toggle */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle dark/light mode"
@@ -215,30 +229,15 @@ export default function Navbar() {
               dark:hover:shadow-[0_0_14px_rgba(96,165,250,0.28)]
             `}
           >
-            {/* Sun icon — shown when in dark mode (click to go light) */}
-            <span className={`
-              absolute transition-all duration-500
-              ${theme === "dark"
-                ? "opacity-100 rotate-0 scale-100"
-                : "opacity-0 rotate-90 scale-50"
-              }
-            `}>
-              <Sun size={15} strokeWidth={2} />
+            <span className={`absolute transition-all duration-500 ${theme === "dark" ? "opacity-100 rotate-0 scale-100" : "opacity-0 rotate-90 scale-50"}`}>
+              <Sun size={14} strokeWidth={2} />
             </span>
-
-            {/* Moon icon — shown when in light mode (click to go dark) */}
-            <span className={`
-              absolute transition-all duration-500
-              ${theme === "light"
-                ? "opacity-100 rotate-0 scale-100"
-                : "opacity-0 -rotate-90 scale-50"
-              }
-            `}>
-              <Moon size={15} strokeWidth={2} />
+            <span className={`absolute transition-all duration-500 ${theme === "light" ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"}`}>
+              <Moon size={14} strokeWidth={2} />
             </span>
           </button>
 
-          {/* Mobile menu button — hidden on md+ */}
+          {/* Mobile menu */}
           <div className="relative md:hidden" ref={dropdownRef}>
             <button
               ref={menuBtnRef}
@@ -251,10 +250,10 @@ export default function Navbar() {
               `}
             >
               <span className={`absolute transition-all duration-300 ${mobileOpen ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"}`}>
-                <LayoutGrid size={15} strokeWidth={2} />
+                <LayoutGrid size={14} strokeWidth={2} />
               </span>
               <span className={`absolute transition-all duration-300 ${mobileOpen ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"}`}>
-                <X size={15} strokeWidth={2} />
+                <X size={14} strokeWidth={2} />
               </span>
             </button>
             <MobileDropdown open={mobileOpen} onClose={() => setMobileOpen(false)} />

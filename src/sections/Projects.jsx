@@ -102,7 +102,7 @@ export default function Projects() {
   const visible = filter === "all" ? PROJECTS : PROJECTS.filter(p => p.tags.some(t => t.toLowerCase().includes(filter.toLowerCase())));
 
   return (
-    /* ✅ bg-slate-50/dark:bg-[#080d20] — NOT inline style */
+    
     <section
       id="projects"
       className="bg-slate-50 dark:bg-[#080d20] text-slate-900 dark:text-white transition-colors duration-500"
@@ -116,10 +116,19 @@ export default function Projects() {
             <div className="h-px w-11 bg-gradient-to-r from-transparent via-slate-300 dark:via-white/20 to-transparent" />
             <span className="pj-f-body text-[0.6rem] font-semibold tracking-[0.44em] uppercase text-slate-500 dark:text-slate-400">What I've built</span>
             <div className="h-px w-11 bg-gradient-to-r from-transparent via-slate-300 dark:via-white/20 to-transparent" />
-          </div>
-          <h2 className="pj-f-display font-extrabold uppercase tracking-tight text-slate-900 dark:text-white" style={{ fontSize:"clamp(2.6rem,7vw,5.5rem)" }}>Projects</h2>
-          <div className="pj-f-display font-extrabold uppercase select-none text-slate-900/[0.03] dark:text-white/[0.025]"
-            style={{ fontSize:"clamp(3rem,11vw,8rem)", lineHeight:0.86, marginTop:-4 }} aria-hidden>WORK</div>
+          </div><h2 className="pj-f-display font-extrabold uppercase tracking-tight text-slate-900 dark:text-white 
+               text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+  Projects
+</h2>
+
+<div
+  className="pj-f-display font-extrabold uppercase select-none 
+             text-slate-900/[0.03] dark:text-white/[0.025]
+             text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.86] -mt-1"
+  aria-hidden
+>
+  WORK
+</div>
           <p className="pj-f-body text-[0.88rem] font-light text-slate-500 dark:text-slate-400 max-w-lg mx-auto mt-2">
             A selection of projects I've designed, built and shipped — from full-stack apps to frontend products.
           </p>

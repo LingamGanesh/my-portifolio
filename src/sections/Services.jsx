@@ -117,7 +117,7 @@ function ServiceCard({ s, idx }) {
 
 export default function Services() {
   return (
-    /* ✅ bg-slate-50/dark:bg-[#080d20] — NOT inline style */
+  
     <section
       id="services"
       className="bg-slate-50 dark:bg-[#080d20] text-slate-900 dark:text-white transition-colors duration-500"
